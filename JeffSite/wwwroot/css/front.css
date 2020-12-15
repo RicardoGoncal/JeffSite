@@ -1,0 +1,28 @@
+﻿html {
+    font-family: 'Roboto', sans-serif;
+}
+
+#profilePhoto {
+    height: 180px;
+    width: 180px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 95px;
+}
+
+#navbarTogglerDemo02 {
+    background-color: #33415C;
+    color: #CFD7DB;
+    margin-top: 200px;
+}
+
+@media (max-width: 768px) {
+    #profilePhoto {
+        display: none;
+    }
+
+    #navbarTogglerDemo02 {
+        margin-top: 0px;
+    }
+}
