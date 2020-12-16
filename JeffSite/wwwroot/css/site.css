@@ -24,6 +24,35 @@ a {
   border-color: #1861ac;
 }
 
+.logoImage {
+    height: 200px;
+    width: 200px;
+    border: double 1px;
+    border-radius: 50%;
+    margin-top: -160px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.imageBG{
+    height: 315px;
+    background-color: aqua;
+}
+
+#navPersonal {
+    background-color: #33415C;
+    color: #CFDBD5;
+    margin-top: -46px;
+}
+
+#firstLiNavbar{
+    padding-left: 25px;
+}
+
+.nav-link{
+    padding-left: 40px;
+    padding-right: 40px;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -36,6 +65,24 @@ html {
     font-size: 16px;
   }
 }
+
+@media (max-width: 768px) {
+    .logoImage {
+        display: none;
+    }
+    .imageBG {
+        display: none;
+    }
+    #firstLiNavbar {
+        padding-left: 0;
+    }
+    #navPersonal {
+        margin-top: 0;
+    }
+    .nav-link {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
 .border-top {
   border-top: 1px solid #e5e5e5;
