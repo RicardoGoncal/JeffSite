@@ -1,19 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using JeffSite.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace JeffSite.Controllers
 {
     public class AdminController : Controller
     {
+        
+
+
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
         }
+
+        public IActionResult AdminHome()
+        {
+            var usuarioLogado = HttpContext.Session.GetString("UsuarioLogado");
+            if (usuarioLogado == "" || usuarioLogado == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ValidarUsuario(Usuario usuarioLogado)
+        {
+            bool testausuario = new Usuario().VerificaUsuario(usuarioLogado);
+            if (testausuario)
+            {
+                HttpContext.Session.SetString("UsuarioLogado", usuarioLogado.usuario);
+                return RedirectToAction(nameof(AdminHome));
+            }
+            HttpContext.Session.SetString("UsuarioLogado", "");
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
