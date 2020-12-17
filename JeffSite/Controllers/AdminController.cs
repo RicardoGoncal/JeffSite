@@ -33,8 +33,14 @@ namespace JeffSite.Controllers
             if (testausuario)
             {
                 HttpContext.Session.SetString("UsuarioLogado", usuarioLogado.usuario);
-                return RedirectToAction(nameof(AdminHome));
+                return RedirectToAction(nameof(AdminHome), usuarioLogado);
             }
+            HttpContext.Session.SetString("UsuarioLogado", "");
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Deslogar()
+        {
             HttpContext.Session.SetString("UsuarioLogado", "");
             return RedirectToAction(nameof(Index));
         }
