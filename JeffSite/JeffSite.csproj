@@ -6,5 +6,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
+    <Folder Include="Views\Loja\" />
+    <Folder Include="Views\Leitor\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
 </Project>

@@ -23,7 +23,12 @@ namespace JeffSite.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult BioCompleta()
+        {
+            return View();
+        }
+
+        public IActionResult Contato()
         {
             return View();
         }
