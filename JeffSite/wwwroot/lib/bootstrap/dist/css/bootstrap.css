@@ -4348,7 +4348,7 @@ input[type="button"].btn-block {
     position: absolute;
   }
   .navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 3.5rem;
+    padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
   .navbar-expand-lg > .container,
@@ -4359,7 +4359,7 @@ input[type="button"].btn-block {
   .navbar-expand-lg .navbar-collapse {
     display: -ms-flexbox !important;
     display: flex !important;
-    -ms-flex-preferred-size: auto;
+/*    -ms-flex-preferred-size: auto;*/
     flex-basis: auto;
   }
   .navbar-expand-lg .navbar-toggler {
