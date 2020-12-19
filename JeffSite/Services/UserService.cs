@@ -14,7 +14,11 @@ namespace JeffSite.Services
             _context = context;
         }
         public bool ValidateUser(User user){
-            return  _context.User.Any(u => u.user == user.user && u.pass == user.pass);
+            return  _context.User.Any(u => u.UserName == user.UserName && u.Pass == user.Pass);
+        }
+
+        public User GetUserBYLogin(string login){
+            return _context.User.FirstOrDefault(u => u.UserName == login);
         }
 
         public void ChangePassword(User user){

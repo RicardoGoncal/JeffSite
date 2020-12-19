@@ -19,8 +19,8 @@ namespace JeffSite.Data
                 return; //bd has been seeded
             }
 
-            User user1 = new User {user = "Admin", pass = "123"};
-            User user2 = new User {user = "Jeff", pass = "123"};
+            User user1 = new User {UserName = "Admin", Pass = "123"};
+            User user2 = new User {UserName = "Jeff", Pass = "123"};
             _context.User.AddRange(user1, user2);
 
             _context.SaveChanges();
