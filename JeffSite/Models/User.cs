@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace JeffSite.Models
 {
     public class User
     {
+        [Key]
         public string user { get; set; }
         public string pass { get; set; }
 
