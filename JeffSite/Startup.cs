@@ -28,8 +28,8 @@ namespace JeffSite
 
             services.AddDbContext<JeffContext>(options =>
                 options.UseMySql(
-                    Configuration.GetConnectionString("JeffContext"),
-                    builder => builder.MigrationsAssembly("JeffContext")
+                    Configuration.GetConnectionString("JeffSite"),
+                    builder => builder.MigrationsAssembly("JeffSite")
                 ));
 
             services.AddScoped<User>();
