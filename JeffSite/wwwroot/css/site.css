@@ -27,7 +27,6 @@ a {
 .logoImage {
     height: 200px;
     width: 200px;
-    border: double 1px;
     border-radius: 50%;
     margin-top: -160px;
     margin-left: 10px;
@@ -69,7 +68,7 @@ ul#SocialMidia li {
     height: 50px;
     width: 50px;
 }
-
+ 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
