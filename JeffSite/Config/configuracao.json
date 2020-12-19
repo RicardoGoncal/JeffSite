@@ -1,0 +1,24 @@
+﻿{
+  "Usuarios": [
+    {
+      "usuario": "Jeff",
+      "senha": "123"
+    },
+    {
+      "usuario": "Admin",
+      "senha": "123"
+    }
+  ],
+  "SocialMidias": [
+    {
+      "Nome": "Facebook",
+      "url": "www.facebook.com",
+      "urlImagem": "www.facebook.com"
+    },
+    {
+      "Nome": "Instagram",
+      "url": "www.instagram.com",
+      "urlImagem": "www.instagram.com"
+    }
+  ]
+}
