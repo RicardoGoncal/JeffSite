@@ -1,31 +1,26 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace JeffSite.Models
 {
     public class User
     {
         [Key]
-        public string user { get; set; }
-        public string pass { get; set; }
+        [Required (ErrorMessage = "Por favor, inserir seu nome!")]
+        public string UserName { get; set; }
+
+        [Required (ErrorMessage = "Por favor, inserir sua senha!")]
+        [MinLength(6, ErrorMessage = "Senha requer no minimo {1} caracteres!")]
+        public string Pass { get; set; }
 
         public User()
         {
         }
 
-
-        public List<User> ListUserRegistered()
+        public User(string user, string pass)
         {
-            List<User> users = new List<User>();
-
-            users.Add( new User { user = "jeff", pass = "123" });
-            users.Add( new User { user = "admin", pass = "123" });
-
-            return users;
-
+            UserName = user;
+            Pass = pass;
         }
-
+        
     }
 }
