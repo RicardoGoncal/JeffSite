@@ -1,5 +1,6 @@
+using System;
 using JeffSite.Data;
-using JeffSite.Models;
+using JeffSite.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +33,14 @@ namespace JeffSite
                     builder => builder.MigrationsAssembly("JeffSite")
                 ));
 
-            services.AddScoped<User>();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(60*5);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddScoped<UserService>();
             
         }
 

@@ -13,7 +13,6 @@ namespace JeffSite.Controllers
             _userService = userService;
         }
 
-        // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
@@ -21,7 +20,7 @@ namespace JeffSite.Controllers
 
         public IActionResult AdminHome()
         {
-            var usuarioLogado = HttpContext.Session.GetString("UsuarioLogado");
+            var usuarioLogado = HttpContext.Session.GetString("userLogged");
             if (usuarioLogado == "" || usuarioLogado == null)
             {
                 return RedirectToAction(nameof(Index));
@@ -29,7 +28,7 @@ namespace JeffSite.Controllers
             return View();
         }
 
-        [HttpPost]
+       [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ValidateUser(User userLogged)
         {
