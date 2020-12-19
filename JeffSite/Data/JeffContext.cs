@@ -6,7 +6,7 @@ namespace JeffSite.Data
 {
     public class JeffContext : DbContext
     {
-        public JeffContext()
+        public JeffContext(DbContextOptions<JeffContext> options) : base(options)
         {
         }
 

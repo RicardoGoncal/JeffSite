@@ -13,7 +13,6 @@ namespace JeffSite.Controllers
             _userService = userService;
         }
 
-
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -32,7 +31,7 @@ namespace JeffSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ValidarUsuario(User userLogged)
+        public IActionResult ValidateUser(User userLogged)
         {
             bool validUser = _userService.ValidateUser(userLogged);
             if (validUser)
@@ -44,7 +43,7 @@ namespace JeffSite.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Deslogar()
+        public IActionResult Logout()
         {
             HttpContext.Session.SetString("userLogged", "");
             return RedirectToAction(nameof(Index));
