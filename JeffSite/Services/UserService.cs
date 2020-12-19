@@ -5,7 +5,6 @@ using JeffSite.Models;
 
 namespace JeffSite.Services
 {
-
     public class UserService
     {
         private readonly JeffContext _context;
