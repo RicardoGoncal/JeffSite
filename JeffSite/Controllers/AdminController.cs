@@ -1,12 +1,17 @@
 ﻿using JeffSite.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using JeffSite.Services;
 
 namespace JeffSite.Controllers
 {
     public class AdminController : Controller
     {
-        
+        private readonly UserService _userService;
+
+        public AdminController(UserService userService){
+            _userService = userService;
+        }
 
 
         // GET: /<controller>/
@@ -27,21 +32,21 @@ namespace JeffSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ValidarUsuario(Usuario usuarioLogado)
+        public IActionResult ValidarUsuario(User userLogged)
         {
-            bool testausuario = new Usuario().VerificaUsuario(usuarioLogado);
-            if (testausuario)
+            bool validUser = _userService.ValidateUser(userLogged);
+            if (validUser)
             {
-                HttpContext.Session.SetString("UsuarioLogado", usuarioLogado.usuario);
-                return RedirectToAction(nameof(AdminHome), usuarioLogado);
+                HttpContext.Session.SetString("userLogged", userLogged.user);
+                return RedirectToAction(nameof(AdminHome), userLogged);
             }
-            HttpContext.Session.SetString("UsuarioLogado", "");
+            HttpContext.Session.SetString("userLogged", "");
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Deslogar()
         {
-            HttpContext.Session.SetString("UsuarioLogado", "");
+            HttpContext.Session.SetString("userLogged", "");
             return RedirectToAction(nameof(Index));
         }
 

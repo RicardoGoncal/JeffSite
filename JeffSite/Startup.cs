@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JeffSite.Data;
 using JeffSite.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +30,14 @@ namespace JeffSite
             services.AddControllersWithViews();
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddDbContext<JeffContext>(options =>
+                options.UseMySql(
+                    Configuration.GetConnectionString("JeffSite"),
+                    builder => builder.MigrationsAssembly("JeffSite")
+                ));
+            services.AddScoped<User>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

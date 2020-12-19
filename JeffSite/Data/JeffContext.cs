@@ -10,7 +10,7 @@ namespace JeffSite.Data
         {
         }
 
-        public DbSet<Usuario> User { get; set; }
+        public DbSet<User> User { get; set; }
 
     }
 }
