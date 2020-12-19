@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JeffSite.Services;
 
 namespace JeffSite.Models
 {
@@ -12,6 +13,7 @@ namespace JeffSite.Models
         public Usuario()
         {
         }
+
 
         public List<Usuario> ListUserRegistered()
         {

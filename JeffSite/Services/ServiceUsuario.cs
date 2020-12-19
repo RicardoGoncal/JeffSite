@@ -1,10 +1,17 @@
-﻿using System;
+﻿using JeffSite.Data;
+
 namespace JeffSite.Services
 {
+
     public class ServiceUsuario
     {
-        public ServiceUsuario()
+        private readonly JeffContext _context;
+
+        public ServiceUsuario(JeffContext context)
         {
+            _context = context;
         }
+
     }
+
 }

@@ -9,5 +9,11 @@
     <Folder Include="Views\Loja\" />
     <Folder Include="Views\Leitor\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Services\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
   </ItemGroup>
 </Project>
