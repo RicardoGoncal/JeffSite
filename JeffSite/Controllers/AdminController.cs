@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using JeffSite.Services;
+using System.Threading.Tasks;
 
 namespace JeffSite.Controllers
 {
@@ -20,15 +21,15 @@ namespace JeffSite.Controllers
 
         public IActionResult AdminHome()
         {
-            var usuarioLogado = HttpContext.Session.GetString("userLogged");
-            if (usuarioLogado == "" || usuarioLogado == null)
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
             {
-                return RedirectToAction(nameof(Index));
+                return View(nameof(AdminHome));
             }
             return View();
         }
 
-       [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ValidateUser(User userLogged)
         {
@@ -36,8 +37,10 @@ namespace JeffSite.Controllers
             if (validUser)
             {
                 HttpContext.Session.SetString("userLogged", userLogged.user);
-                return RedirectToAction(nameof(AdminHome), userLogged);
+                return RedirectToAction(nameof(AdminHome));
             }
+            TempData["message"] = "Usuario ou Senha invalido!";
+            TempData["user"] = userLogged.user;
             HttpContext.Session.SetString("userLogged", "");
             return RedirectToAction(nameof(Index));
         }
@@ -46,6 +49,17 @@ namespace JeffSite.Controllers
         {
             HttpContext.Session.SetString("userLogged", "");
             return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangePassword(User user){
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(AdminHome));
         }
 
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JeffSite.Models.User>
+﻿@model User
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,9 +25,8 @@
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <div>
-                            <label>Bem vindo! </label>
-                            <i>@Html.DisplayNameFor(m => m.user)</i>,
-                            <a asp-controller="Admin" asp-action="Logout">(sair)</a>
+                            <a class="btn btn-warning" data-toggle="modal" data-target="#Model">Alterar Senha</a>
+                            <a class="btn btn-warning" asp-controller="Admin" asp-action="Logout">Logout</a>
                         </div>
                     </form>
                 </div>
@@ -39,7 +38,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="footer text-muted">
         <div class="container">
             Copy &copy; @DateTime.Now.ToString("yyyy")
