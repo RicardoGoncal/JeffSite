@@ -1,0 +1,24 @@
+@model SocialMidia
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<form asp-action="Create">
+    
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Nome rede social">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Endereço</label>
+        <input type="text" class="form-control" asp-for="Url" placeholder="Endereço rede social">
+        <span asp-validation-for="Url" class="text-danger"></span>
+    </div>
+    <a asp-controller="Admin" asp-action="AdminHome">Voltar</a>
+    <button class="btn btn-primary">Salvar</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -12,7 +12,8 @@ namespace JeffSite.Controllers
         private readonly UserService _userService;
         private readonly SocialMidiaService _socialMidiaService;
 
-        public SocialMidiaController(UserService userService, SocialMidiaService socialMidiaService){
+        public SocialMidiaController(UserService userService, SocialMidiaService socialMidiaService)
+        {
             _userService = userService;
             _socialMidiaService = socialMidiaService;
         }
@@ -22,10 +23,42 @@ namespace JeffSite.Controllers
             var userLogged = HttpContext.Session.GetString("userLogged");
             if (userLogged == "" || userLogged == null)
             {
-                return RedirectToAction("Index","Admin");
+                return RedirectToAction("Index", "Admin");
             }
             var socialMidias = _socialMidiaService.FindAll();
             return View(socialMidias);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewData["Title"] = "Criar";
+                return View();
+            }
+            return View();
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(SocialMidia socialMidia)
+        {
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            if (ModelState.IsValid)
+            {
+                _socialMidiaService.Create(socialMidia);
+            }
+            return RedirectToAction("Index");
+
         }
 
     }

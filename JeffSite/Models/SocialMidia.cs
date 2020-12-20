@@ -5,13 +5,13 @@ namespace JeffSite.Models
     public class SocialMidia
     {
         [Key]
-        [Required (ErrorMessage = "Por favor, inserir o {0}}!")]
-        [MinLength(3,ErrorMessage = "{1} requer no minimo {2}")]
-        [Display(Name = "Nome Rede Social")]
+        [Required]
+        //[MinLength(3,ErrorMessage = "{1} requer no minimo {2}")]
+        [Display(Name = "Nome rede social")]
         public string Name { get; set; }
 
-        [Required (ErrorMessage = "Por favor, inserir a {0}}!")]
-        [Display(Name = "Endereco Rede Social")]
+        [Required]
+        [Display(Name = "Endereço da rede social")]
         public string Url { get; set; }
 
         public SocialMidia()

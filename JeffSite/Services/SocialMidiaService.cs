@@ -18,6 +18,11 @@ namespace JeffSite.Services
             return _context.SocialMidia.ToList();
         }
 
+        public void Create(SocialMidia socialMidia){
+            _context.SocialMidia.Add(socialMidia);
+            _context.SaveChanges();
+        }
+
     }
 
 }
