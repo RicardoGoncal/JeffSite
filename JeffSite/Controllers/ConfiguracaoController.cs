@@ -10,12 +10,12 @@ namespace JeffSite.Controllers
     public class ConfiguracaoController : Controller
     {
         private readonly UserService _userService;
-        private readonly SocialMidiaService _socialMidiaService;
+        private readonly ConfiguracaoService _configuracaoService;
 
-        public ConfiguracaoController(UserService userService, SocialMidiaService socialMidiaService)
+        public ConfiguracaoController(UserService userService, ConfiguracaoService configuracaoService)
         {
             _userService = userService;
-            _socialMidiaService = socialMidiaService;
+            _configuracaoService = configuracaoService;
         }
 
         public IActionResult Index()
@@ -25,87 +25,22 @@ namespace JeffSite.Controllers
             {
                 return RedirectToAction("Index", "Admin");
             }
-            ViewData["Title"] = "Redes sociais";
-            var socialMidias = _socialMidiaService.FindAll();
-            return View(socialMidias);
-        }
-        [HttpGet]
-        public IActionResult Create()
-        {
-            var userLogged = HttpContext.Session.GetString("userLogged");
-            if (userLogged == "" || userLogged == null)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            ViewData["Title"] = "Criar";
-            return View();
+            ViewData["Title"] = "Configurações do site";
+            var configs = _configuracaoService.Find();
+            return View(configs);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(SocialMidia socialMidia)
+        public IActionResult Edit(Configuracao configuracao)
         {
             var userLogged = HttpContext.Session.GetString("userLogged");
             if (userLogged == "" || userLogged == null)
             {
                 return RedirectToAction("Index", "Admin");
             }
-            if (ModelState.IsValid)
-            {
-                _socialMidiaService.Create(socialMidia);
-            }
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public IActionResult Delete(string name)
-        {
-            var userLogged = HttpContext.Session.GetString("userLogged");
-            if (userLogged == "" || userLogged == null)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            ViewData["Title"] = "Deletar";
-            var social = _socialMidiaService.FindByName(name);
-            return View(social);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(SocialMidia socialMidia)
-        {
-            var userLogged = HttpContext.Session.GetString("userLogged");
-            if (userLogged == "" || userLogged == null)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            _socialMidiaService.Delete(socialMidia);
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public IActionResult Edit(string name)
-        {
-            var userLogged = HttpContext.Session.GetString("userLogged");
-            if (userLogged == "" || userLogged == null)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            ViewData["Title"] = "Editar";
-            var social = _socialMidiaService.FindByName(name);
-            return View(social);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(SocialMidia socialMidia)
-        {
-            var userLogged = HttpContext.Session.GetString("userLogged");
-            if (userLogged == "" || userLogged == null)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            _socialMidiaService.Edit(socialMidia);
+            _configuracaoService.Edit(configuracao);
+            TempData["message"] = "Alterado com sucesso!";
             return RedirectToAction("Index");
         }
 
