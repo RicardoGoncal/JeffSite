@@ -5,11 +5,13 @@ namespace JeffSite.Models
     public class User
     {
         [Key]
-        [Required (ErrorMessage = "Por favor, inserir seu nome!")]
+        [Required (ErrorMessage = "Por favor, inserir seu {0}!")]
+        [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
-        [Required (ErrorMessage = "Por favor, inserir sua senha!")]
-        [MinLength(6, ErrorMessage = "Senha requer no minimo {1} caracteres!")]
+        [Required (ErrorMessage = "Por favor, inserir sua {0}!")]
+        [MinLength(6, ErrorMessage = "{0} requer no minimo {1} caracteres!")]
+        [Display(Name = "Senha")]
         public string Pass { get; set; }
 
         public User()

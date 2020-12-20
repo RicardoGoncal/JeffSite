@@ -17,9 +17,15 @@ namespace JeffSite.Services
         public List<SocialMidia> FindAll(){
             return _context.SocialMidia.ToList();
         }
-
         public void Create(SocialMidia socialMidia){
             _context.SocialMidia.Add(socialMidia);
+            _context.SaveChanges();
+        }
+        public SocialMidia FindByName(string name){
+            return _context.SocialMidia.FirstOrDefault(s => s.Name == name);
+        }
+        public void Delete(SocialMidia socialMidia){
+            _context.SocialMidia.Remove(socialMidia);
             _context.SaveChanges();
         }
 

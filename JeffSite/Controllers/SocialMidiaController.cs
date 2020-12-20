@@ -42,8 +42,8 @@ namespace JeffSite.Controllers
                 return View();
             }
             return View();
-
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(SocialMidia socialMidia)
@@ -58,7 +58,31 @@ namespace JeffSite.Controllers
                 _socialMidiaService.Create(socialMidia);
             }
             return RedirectToAction("Index");
+        }
 
+        public IActionResult Delete(string name)
+        {
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            ViewData["Title"] = "Deletar";
+            var social = _socialMidiaService.FindByName(name);
+            return View(social);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(SocialMidia socialMidia)
+        {
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            _socialMidiaService.Delete(socialMidia);
+            return RedirectToAction("Index");
         }
 
     }

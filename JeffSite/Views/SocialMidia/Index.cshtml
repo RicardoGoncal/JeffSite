@@ -16,9 +16,9 @@
       {
           <tr>
             <th scope="row">
-                @Html.ActionLink("Edit", "Edit", new { email = item.Name })
+                @Html.ActionLink("Edit", "Edit", new { name = item.Name })
                     @Html.Label(" | ")
-                    @Html.ActionLink("Delete", "Delete", new { email = item.Name })
+                    @Html.ActionLink("Delete", "Delete", new { name = item.Name })
             </th>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Url)</td>
