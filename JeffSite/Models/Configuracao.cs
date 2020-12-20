@@ -7,14 +7,24 @@ namespace JeffSite.Models
         [Key]
         //[Required (ErrorMessage = "Por favor, inserir {0}!")]
         //[Display(Name = "Nome rede social")]
-        public string ConfigName { get; set; }
+        public string ContactEmail { get; set; }
         //[StringLength(30, MinimumLength = 3, ErrorMessage = "{0} requer entre {2} e {1} caracteres!")]
         //[Required (ErrorMessage = "Por favor, inserir {0}!")]
         //[Display(Name = "Endereço da rede social")]
-        public string ConfigValue { get; set; }
+        public string ImgProfile { get; set; }
+        public string ImgLogo { get; set; }
+        public string UrlMercadoLivre { get; set; }
 
         public Configuracao()
         {
+        }
+
+        public Configuracao(string contactEmail, string imgProfile, string imgLogo, string urlMercadoLivre)
+        {
+            ContactEmail = contactEmail;
+            ImgProfile = imgLogo;
+            ImgLogo = imgLogo;
+            UrlMercadoLivre = urlMercadoLivre;
         }
         
     }
