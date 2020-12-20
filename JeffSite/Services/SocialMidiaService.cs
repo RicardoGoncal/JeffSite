@@ -29,6 +29,11 @@ namespace JeffSite.Services
             _context.SaveChanges();
         }
 
+        public void Edit(SocialMidia socialMidia){
+            _context.SocialMidia.Update(socialMidia);
+            _context.SaveChanges();
+        }
+
     }
 
 }

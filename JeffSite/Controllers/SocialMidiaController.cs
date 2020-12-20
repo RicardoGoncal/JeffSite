@@ -25,6 +25,7 @@ namespace JeffSite.Controllers
             {
                 return RedirectToAction("Index", "Admin");
             }
+            ViewData["Title"] = "Redes sociais";
             var socialMidias = _socialMidiaService.FindAll();
             return View(socialMidias);
         }
@@ -36,11 +37,7 @@ namespace JeffSite.Controllers
             {
                 return RedirectToAction("Index", "Admin");
             }
-            if (!ModelState.IsValid)
-            {
-                ViewData["Title"] = "Criar";
-                return View();
-            }
+            ViewData["Title"] = "Criar";
             return View();
         }
 
@@ -60,6 +57,7 @@ namespace JeffSite.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public IActionResult Delete(string name)
         {
             var userLogged = HttpContext.Session.GetString("userLogged");
@@ -82,6 +80,32 @@ namespace JeffSite.Controllers
                 return RedirectToAction("Index", "Admin");
             }
             _socialMidiaService.Delete(socialMidia);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(string name)
+        {
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            ViewData["Title"] = "Editar";
+            var social = _socialMidiaService.FindByName(name);
+            return View(social);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(SocialMidia socialMidia)
+        {
+            var userLogged = HttpContext.Session.GetString("userLogged");
+            if (userLogged == "" || userLogged == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            _socialMidiaService.Edit(socialMidia);
             return RedirectToAction("Index");
         }
 
