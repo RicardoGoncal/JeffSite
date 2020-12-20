@@ -41,6 +41,7 @@ namespace JeffSite
             });
 
             services.AddScoped<UserService>();
+            services.AddScoped<SocialMidiaService>();
             services.AddScoped<SeedingService>();
             
         }
