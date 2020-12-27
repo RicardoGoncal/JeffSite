@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using JeffSite.Models;
+using JeffSite.Services;
 
 namespace JeffSite.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly UserService _userService;
+        private readonly ConfiguracaoService _configuracaoService;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserService userService, ConfiguracaoService configuracaoService)
         {
             _logger = logger;
+            _userService = userService;
+            _configuracaoService = configuracaoService;
         }
 
         public IActionResult Index()
@@ -37,6 +44,13 @@ namespace JeffSite.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult SendEmail(string NameContact){
+            string email = _configuracaoService.FindAdminEmail();
+            return View("Contato");
         }
     }
 }
