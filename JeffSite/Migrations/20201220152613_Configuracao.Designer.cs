@@ -2,14 +2,16 @@
 using JeffSite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JeffSite.Migrations
 {
     [DbContext(typeof(JeffContext))]
-    partial class JeffContextModelSnapshot : ModelSnapshot
+    [Migration("20201220152613_Configuracao")]
+    partial class Configuracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,15 +25,12 @@ namespace JeffSite.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ContactEmail")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("ImgLogo")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("ImgProfile")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("UrlMercadoLivre")
@@ -49,7 +48,7 @@ namespace JeffSite.Migrations
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(30) CHARACTER SET utf8mb4");
 
                     b.HasKey("Name");
 
