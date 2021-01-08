@@ -9,6 +9,9 @@ using JeffSite.Models;
 using JeffSite.Services;
 using System.Text.RegularExpressions;
 using JeffSite.Utils;
+using JeffSite.InfoContato;
+using System.IO;
+
 
 namespace JeffSite.Controllers
 {
@@ -53,9 +56,14 @@ namespace JeffSite.Controllers
         public IActionResult SendEmail(string namecontact, string emailcontact, string phonecontact, string subjectcontact){
             bool val = true;
             bool enviado = true;
+
+            Contato infocontato = new Contato();
+            Dictionary<string, string> contato = infocontato.retornajson(); 
+
             // Recuperar o email que está cadastrado nas configs.
             // Email abaixo está cadastrado no MailJet, provedor com 6000 msg/mês gratuitas
-            string email = "rika_alves@hotmail.com";  
+            string email = contato["email"]; 
+            string email2 = contato["email2"]; 
 
             // Verifica se o nome foi digitado
             if(string.IsNullOrEmpty(namecontact)){
@@ -93,7 +101,7 @@ namespace JeffSite.Controllers
                 EnviarEmail env_mail = new EnviarEmail();
 
                 // Se passou em todas as validações, realiza o envio de email
-                if(env_mail.testeEmail(email, emailcontact, subjectcontact, namecontact, phonecontact)){
+                if(env_mail.testeEmail(email2, emailcontact, subjectcontact, namecontact, phonecontact)){
                     ViewBag.Message = "Mensagem enviada!";
                     enviado = true;
                 };
