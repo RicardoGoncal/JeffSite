@@ -22,7 +22,7 @@ namespace JeffSite.Utils{
 
             
                 // Constroi o MailMessage
-                _mailmessage.CC.Add(emailTo);
+                _mailmessage.CC.Add(emailFrom);
                 _mailmessage.Subject = subject;
                 _mailmessage.IsBodyHtml = true;
                 _mailmessage.Body = texthtml;
