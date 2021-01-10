@@ -8,7 +8,7 @@ namespace JeffSite.InfoContato{
 
     public class Contato{
 
-
+        // Realizar a administração das informações do contato.
         public string Email{get; set; }
         public string Email2{get; set; }
 
