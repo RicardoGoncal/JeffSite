@@ -29,12 +29,12 @@ namespace JeffSite.InfoContato{
             string email2 = infos.Email2;
 
             // Criação de um dicionario 
-            var dic1 = new Dictionary<string, string>();
-            dic1.Add("email", email1);
-            dic1.Add("email2", email2);
+            var dic_infos = new Dictionary<string, string>();
+            dic_infos.Add("email", email1);
+            dic_infos.Add("email2", email2);
 
             // Retorna o dicionario pelo metodo.
-            return dic1;
+            return dic_infos;
         }
 
     }
